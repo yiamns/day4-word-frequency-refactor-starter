@@ -49,18 +49,18 @@ public class WordFrequencyGame {
             inputList.add(s);
         }
 
-        Map<String, List<String>> map = new HashMap<>();
+        Map<String, List<String>> group = new HashMap<>();
         for (String input : inputList){
-            // map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!map.containsKey(input)){
+            // group.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
+            if (!group.containsKey(input)){
                 ArrayList arr = new ArrayList<>();
                 arr.add(input);
-                map.put(input, arr);
+                group.put(input, arr);
             }
             else {
-                map.get(input).add(input);
+                group.get(input).add(input);
             }
         }
-        return map;
+        return group;
     }
 }
