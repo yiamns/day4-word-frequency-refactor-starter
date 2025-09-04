@@ -16,20 +16,7 @@ public class WordFrequencyGame {
             try {
                 String[] words_split = inputStr.split(ANY_SPACE_SEPARATOR);
 
-                List<Input> inputList = new ArrayList<>();
-                for (String s : words_split) {
-                    Input input = new Input(s, 1);
-                    inputList.add(input);
-                }
-
-                Map<String, List<Input>> map = getListMap(inputList);
-
-                List<Input> list = new ArrayList<>();
-                for (Map.Entry<String, List<Input>> entry : map.entrySet()){
-                    Input input = new Input(entry.getKey(), entry.getValue().size());
-                    list.add(input);
-                }
-                inputList = list;
+                List<Input> inputList = countFrequencies(words_split);
 
                 inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
@@ -43,6 +30,24 @@ public class WordFrequencyGame {
                 return "Calculate Error";
             }
         }
+    }
+
+    private List<Input> countFrequencies(String[] words_split) {
+        List<Input> inputList = new ArrayList<>();
+        for (String s : words_split) {
+            Input input = new Input(s, 1);
+            inputList.add(input);
+        }
+
+        Map<String, List<Input>> map = getListMap(inputList);
+
+        List<Input> list = new ArrayList<>();
+        for (Map.Entry<String, List<Input>> entry : map.entrySet()){
+            Input input = new Input(entry.getKey(), entry.getValue().size());
+            list.add(input);
+        }
+        inputList = list;
+        return inputList;
     }
 
     private Map<String,List<Input>> getListMap(List<Input> inputList) {
