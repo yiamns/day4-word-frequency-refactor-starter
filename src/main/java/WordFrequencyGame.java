@@ -11,20 +11,17 @@ public class WordFrequencyGame {
     public String getResult(String inputStr){
         if (inputStr.split("\\s+").length==1) {
             return inputStr + " 1";
-        } else {
-
+        }
+        else {
             try {
-
-                //split the input string with 1 to n pieces of spaces
-                String[] arr = inputStr.split("\\s+");
+                String[] words_split = inputStr.split("\\s+");
 
                 List<Input> inputList = new ArrayList<>();
-                for (String s : arr) {
+                for (String s : words_split) {
                     Input input = new Input(s, 1);
                     inputList.add(input);
                 }
 
-                //get the map for the next step of sizing the same word
                 Map<String, List<Input>> map = getListMap(inputList);
 
                 List<Input> list = new ArrayList<>();
@@ -43,18 +40,15 @@ public class WordFrequencyGame {
                 }
                 return joiner.toString();
             } catch (Exception e) {
-
-
                 return "Calculate Error";
             }
         }
     }
 
-
     private Map<String,List<Input>> getListMap(List<Input> inputList) {
         Map<String, List<Input>> map = new HashMap<>();
         for (Input input :  inputList){
-//       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
+            // map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
             if (!map.containsKey(input.getValue())){
                 ArrayList arr = new ArrayList<>();
                 arr.add(input);
@@ -65,8 +59,6 @@ public class WordFrequencyGame {
                 map.get(input.getValue()).add(input);
             }
         }
-
-
         return map;
     }
 }
