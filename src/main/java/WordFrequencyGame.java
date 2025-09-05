@@ -6,13 +6,13 @@ public class WordFrequencyGame {
     public static final String ANY_SPACE_SEPARATOR = "\\s+";
 
     public String getResult(String inputStr){
-        String[] words_split = inputStr.split(ANY_SPACE_SEPARATOR);
-        if (words_split.length==1) {
+        String[] words = inputStr.split(ANY_SPACE_SEPARATOR);
+        if (words.length==1) {
             return inputStr + " 1";
         }
         else {
             try {
-                List<Input> frequencies = countFrequencies(words_split);
+                List<Input> frequencies = countFrequencies(words);
 
                 frequencies.sort((w1, w2) -> w2.count() - w1.count());
 
